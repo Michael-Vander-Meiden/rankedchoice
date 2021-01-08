@@ -1,0 +1,35 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<h1>Enter the title and choices for your vote!</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'voting:addtext' pk %}" method="post">
+{% csrf_token %}
+<input type="text" name="text" value="Title">
+<input type="submit" value="Add Question Title">
+</form>
+<h2> {{ question.question_text }} </h2>
+
+<form action="{% url 'voting:addchoice' pk %}" method="post">
+{% csrf_token %}
+<input type="text" name="choicetext" value="choice">
+<input type="submit" value="Add Question Choice">
+</form>
+
+{% for choice in question.choice_set.all %}
+    {{choice.choice_text}}
+    <br>
+{% endfor %}
+
+<br>
+<form action="{% url 'voting:detail' pk %}" method="get">
+{% csrf_token %}
+<input type="submit" value="Launch Question">
+</form>
