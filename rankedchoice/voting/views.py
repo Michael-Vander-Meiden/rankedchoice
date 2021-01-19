@@ -5,7 +5,7 @@ from django.views import generic
 from django.utils import timezone
 
 
-from .models import Choice, Question
+from .models import Choice, Question, RankedVote
 
 
 class IndexView(generic.ListView):
@@ -21,7 +21,7 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'voting/detail.html'
 
-
+#TODO fix template so that it shows the accurate ranked choice layout
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'voting/results.html'
@@ -29,21 +29,37 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'voting/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('voting:results', args=(question.id,)))
+    choices = Choice.objects.filter(question=question)
+    choices_dict = {}
+    ranks_dict = {}
+    for i, choice in enumerate(choices):
+        choices_dict[choice.id] = 0
+        ranks_dict[str(i+1)] = 0
+
+    ranks = [(key.split("_")[1], value) for key, value in request.POST.items() if "choiceid" in key]
+    
+    for choiceid, rank in ranks:
+        
+        choices_dict[choiceid] = 1
+        ranks_dict[rank] = 1
+
+    # This loop checks to make sure that the keys are in order
+    for key, value in ranks_dict.items():
+        if value == 0:
+            return render(request, 'voting/detail.html', {
+                'question': question,
+                'error_message': "Make sure you number choices correctly",
+            })
+    
+    for vote in ranks:
+        pk = vote[0]
+        rank = vote[1]
+
+        cur_choice = Choice.objects.get(pk=pk)
+        new_rankedvote = RankedVote(choice=cur_choice, rank=int(rank))
+        new_rankedvote.save()
+
+    return HttpResponseRedirect(reverse('voting:results', args=(question.id,)))
 
 
 

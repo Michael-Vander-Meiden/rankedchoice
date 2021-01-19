@@ -30,5 +30,3 @@ class RankedVote(models.Model):
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
     rank = models.IntegerField()
 
-    def __str__(self):
-        return(str(rank) + "_" + str(self.choice))
