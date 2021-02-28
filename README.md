@@ -6,7 +6,7 @@ Our goal is to build actionable proprietary datasets for crypto traders and inve
 
 **Name of project:** The Currents Project
 
-**Project Website:** [currents.finance](www.currents.finance)
+**Project Website:** [currents.finance](www.currents.finance) (work in progress)
 
 **Proposal wallet address:** 0xbb397e3F90a5aB8daFd9D8b4E949546537A9d8fb
 
@@ -39,8 +39,8 @@ Later Milestones:
 ## Team Members
 **Michael Vander Meiden**
 
-Masters in Robotic Systems Development from Carnegie Mellon University.
+Masters in Robotic Systems Development from Carnegie Mellon University
 
-Former lead Deep Learning engineer at Stockwell.ai. 
+Former lead Deep Learning engineer at Stockwell AI
 
-Performed deep learning architecture design, data collection, deployment, and maintenance for the largest real-world, real-time deep learning based computer vision network in automated retail with 1200+ stores deployed. Sole deep learning engineer for the majority of the time in this role.
+Performed deep learning architecture design, data collection, deployment, and maintenance for the largest real-world, real-time deep learning based computer vision network in automated retail with 1200+ stores deployed. Sole deep learning engineer for the majority of the time in this role
