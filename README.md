@@ -38,6 +38,9 @@ Later Milestones:
 
 ## Team Members
 **Michael Vander Meiden**
+
 Masters in Robotic Systems Development from Carnegie Mellon University.
 
-Former lead Deep Learning engineer at Stockwell.ai. Experience on deep learning architecture design, data collection, deployment, and maintenance for the largest real-world, real-time deep learning based computer vision network in automated retail with 1200+ stores deployed. Sole deep learning engineer for the majority of the time in this role.
+Former lead Deep Learning engineer at Stockwell.ai. 
+
+Performed deep learning architecture design, data collection, deployment, and maintenance for the largest real-world, real-time deep learning based computer vision network in automated retail with 1200+ stores deployed. Sole deep learning engineer for the majority of the time in this role.
